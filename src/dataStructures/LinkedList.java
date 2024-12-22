@@ -25,11 +25,69 @@ public class LinkedList<T> {
         return this.size;
     }
     
+    public Node<T> getHead() {
+        return this.head;
+    }
+    
     public void clear() {
         this.head = null;
         this.size = 0;
     }
     
+    /**
+     * This method will be responsible for removing specific items from the
+     * linked list based on index. It throws an index out of bounds exception
+     * when the index we are looking for is outside the length of the linked
+     * list.
+     * 
+     * @param index This is the index that we want to remove from 
+     *              the linked list
+     * @throws IndexOutOfBoundsException
+     */
+    public void remove(int index) {
+        if (index < 0 || index > this.size - 1) {
+            throw new IndexOutOfBoundsException();
+        }
+        
+        if (index == 0) {
+            head = head.getNext();
+        }
+        
+        Node<T> previousNode = head;
+        Node<T> currentNode = head.getNext();
+        
+        for (int i = 0; i < index; i++) {
+            previousNode = previousNode.getNext();
+            currentNode = currentNode.getNext();
+        }
+        
+        /*
+         * Need to work on this part to make sure it is working properly
+         * Need to create some assertion tests for this as well to make sure
+         * everything works as expected
+         */
+        
+        
+        
+    }
+    
+    
+    
+    public boolean equals(LinkedList<T> otherList) {
+        if (this.getSize() != otherList.getSize()) {
+            return false;
+        }
+        
+        Node<T> listCursor = head;
+        Node<T> otherCursor = otherList.getHead();
+        
+        for (int i = 0; i < this.getSize(); i++) {
+            if (!listCursor.equals(otherCursor)) {
+                return false;
+            }
+        }
+        return true;
+    }
     
     public String toString() {
         return "";
