@@ -9,15 +9,26 @@ package dataStructures;
  *  @version Dec 22, 2024
  */
 public class LinkedList<T> {
-    private Node<T> head;
     
     //~ Fields ................................................................
-    
+    private Node<T> head;
+    private int size;
     
     //~ Constructors ..........................................................
-
-    //~Public  Methods ........................................................
+    public LinkedList() {
+        this.head = null;
+        this.size = 0;
+    }
     
+    //~Public  Methods ........................................................
+    public int getSize() {
+        return this.size;
+    }
+    
+    public void clear() {
+        this.head = null;
+        this.size = 0;
+    }
     
     
     public String toString() {
