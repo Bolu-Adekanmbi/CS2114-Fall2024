@@ -166,5 +166,9 @@ public class LinkedList<T> {
             this.next = nextNode;
         }
         
+        public boolean equals(Node<T> otherNode) {
+            return this.data.equals(otherNode.getData());
+        }
+        
     }
 }
