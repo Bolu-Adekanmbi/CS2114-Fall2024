@@ -89,14 +89,19 @@ public class LinkedList<T> {
     }
     
     public boolean add(T anEntry, int index) {
+        
+        if (size == 0) {
+            head = new Node<>(anEntry);
+            this.size++;
+            return true;
+        }
+        
         Node<T> insertionNode = findNode(index - 1);
         if (insertionNode == null) {
             return false;
         }
         
-        Node<T> newNextNode = insertionNode.getNext().getNext();
-        Node<T> newNode = new Node<T>(anEntry, newNextNode);
-        
+        Node<T> newNode = new Node<T>(anEntry, insertionNode.getNext());
         insertionNode.setNext(newNode);
         
         this.size++;
