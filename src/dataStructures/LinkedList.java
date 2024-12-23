@@ -137,7 +137,7 @@ public class LinkedList<T> {
      *  @author Mobolurin Adekanmbi
      *  @version Dec 22, 2024
      */
-    private class Node<T> {
+    public class Node<T> {
         private T data;
         private Node<T> next;
         
