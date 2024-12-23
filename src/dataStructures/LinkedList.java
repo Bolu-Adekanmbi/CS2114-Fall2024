@@ -126,7 +126,23 @@ public class LinkedList<T> {
     }
     
     public String toString() {
-        return "";
+        if (size == 0) {
+            return "[]";
+        }
+        
+        StringBuilder sb = new StringBuilder("[");
+        Node<T> currentNode = head;
+        
+        while (currentNode.getNext() != null) {
+            sb.append(currentNode.getData());
+            sb.append(", ");
+        }
+        
+        sb.append(currentNode.getData());
+        sb.append("]");
+        
+        
+        return sb.toString();
     }
     
     /**
