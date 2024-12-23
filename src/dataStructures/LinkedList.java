@@ -99,6 +99,7 @@ public class LinkedList<T> {
         
         insertionNode.setNext(newNode);
         
+        this.size++;
         return true;
     }
     
