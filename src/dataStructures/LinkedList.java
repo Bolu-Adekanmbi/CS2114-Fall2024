@@ -67,8 +67,43 @@ public class LinkedList<T> {
          * everything works as expected
          */
         
+    }
+    
+    /**
+     * This is a private helper method that will help us locate a node within
+     * a linked list
+     * @param index This is the position of the linked list that we want to
+     *              locate
+     */
+    private Node<T> findNode(int index) {
+        if (index < 0 || index > size - 1) {
+            return null;
+        }
         
+        Node<T> currentNode = head;
+        for (int i = 0; i < index; i++) {
+            currentNode = currentNode.getNext();
+        }
         
+        return currentNode;
+    }
+    
+    public boolean add(T anEntry, int index) {
+        Node<T> insertionNode = findNode(index - 1);
+        if (insertionNode == null) {
+            return false;
+        }
+        
+        Node<T> newNextNode = insertionNode.getNext().getNext();
+        Node<T> newNode = new Node<T>(anEntry, newNextNode);
+        
+        insertionNode.setNext(newNode);
+        
+        return true;
+    }
+    
+    public boolean add(T anEntry) {
+        return this.add(anEntry, this.size);
     }
     
     
