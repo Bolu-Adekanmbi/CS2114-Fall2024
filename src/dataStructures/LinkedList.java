@@ -51,22 +51,20 @@ public class LinkedList<T> {
         
         if (index == 0) {
             head = head.getNext();
+            this.size--;
+            return;
         }
         
         Node<T> previousNode = head;
-        Node<T> currentNode = head.getNext();
         
-        for (int i = 0; i < index; i++) {
+        for (int i = 0; i < index - 1; i++) {
             previousNode = previousNode.getNext();
-            currentNode = currentNode.getNext();
         }
         
-        /*
-         * Need to work on this part to make sure it is working properly
-         * Need to create some assertion tests for this as well to make sure
-         * everything works as expected
-         */
+        Node<T> newNextNode = previousNode.getNext().getNext();
+        previousNode.setNext(newNextNode);
         
+        this.size--;
     }
     
     /**
@@ -89,6 +87,9 @@ public class LinkedList<T> {
     }
     
     public boolean add(T anEntry, int index) {
+        if (anEntry == null) {
+            return false;
+        }
         
         if (size == 0) {
             head = new Node<>(anEntry);
@@ -111,8 +112,6 @@ public class LinkedList<T> {
     public boolean add(T anEntry) {
         return this.add(anEntry, this.size);
     }
-    
-    
     
     public boolean equals(LinkedList<T> otherList) {
         if (this.getSize() != otherList.getSize()) {
@@ -141,14 +140,58 @@ public class LinkedList<T> {
         while (currentNode.getNext() != null) {
             sb.append(currentNode.getData());
             sb.append(", ");
+            currentNode = currentNode.getNext();
         }
         
         sb.append(currentNode.getData());
         sb.append("]");
-        
-        
+           
         return sb.toString();
     }
+    
+    @SuppressWarnings("unchecked")
+    public T[] toArray() {
+        
+        // Need to write tests for this method later
+        
+        T[] listArray =  (T[]) new Object[size];
+        
+        if (size == 0) {
+            return listArray;
+        }
+        
+        Node<T> currentNode = head;
+        int index = 0;
+        
+        while (currentNode != null) {
+            listArray[index] = currentNode.getData();
+            currentNode = currentNode.getNext();
+            index++;
+        }
+        
+        return listArray;
+    }
+    
+    public boolean contains(T anEntry) {
+        Node<T> currentNode = head;
+        while (currentNode != null) {
+            if (currentNode.getData().equals(anEntry)) {
+                return true;
+            }
+            currentNode = currentNode.getNext();
+        }
+        
+        return false;
+    }
+    
+    public void removeFirst() {
+        this.remove(0);
+    }
+    
+    public void removeLast() {
+        this.remove(size - 1);
+    }
+    
     
     /**
      *  This is the nested private Node class that is responsible for storing
